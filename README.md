@@ -1,46 +1,78 @@
+# Analisis Sentimen Pelanggan
 
-Proses Analisis Sentimen Pelanggan
-1. Pemuatan dan Eksplorasi Data
-    Dataset yang digunakan terdiri dari 1.200 entri dengan tiga kolom utama:
-      •	Sentiment: Label sentimen (Positive atau Negative).
-      •	Customer Review: Ulasan asli dari pelanggan.
-      •	Corpus: Hasil preprocessing teks.
+## 📌 Deskripsi Proyek
+Proyek ini bertujuan untuk menganalisis sentimen pelanggan berdasarkan ulasan yang diberikan. Model yang digunakan adalah **Support Vector Machine (SVM)** dengan teknik **TF-IDF Vectorizer** untuk merepresentasikan teks dalam format numerik. Dataset terdiri dari **1.200 entri** dengan label sentimen **Positive** atau **Negative**.
 
-     Setelah diperiksa, dataset tidak memiliki nilai kosong, sehingga tidak perlu dilakukan imputasi atau penghapusan data.
+---
 
-3. Preprocessing Teks
-    Sebelum digunakan dalam pemodelan, teks dalam dataset melalui beberapa tahap preprocessing:
-      1.	Konversi Slang Words
-          o	Menggunakan kamus slang (kamusalay.csv) untuk mengganti kata-kata tidak baku dengan versi yang lebih formal.
-      2.	Penghapusan Tanda Baca (Punctuation Removal)
-          o	Menghapus simbol atau tanda baca yang tidak diperlukan dalam analisis sentimen.
-      3.	Penghapusan Karakter Berulang (Repetition Character Removal)
-          o	Menghapus huruf yang berulang lebih dari dua kali dalam suatu kata, misalnya "baguuusss" menjadi "bagus".
-      4.	Stemming dengan Sastrawi
-          o	Mengubah kata-kata menjadi bentuk dasarnya menggunakan Sastrawi, misalnya "pengiriman" menjadi "kirim".
-      5.	Stopwords Removal
-          o	Menghapus kata-kata yang tidak memiliki makna signifikan dalam analisis sentimen menggunakan daftar stopwords yang diperoleh dari Sastrawi dan tambahan kata dari stopwordbahasa.csv.
-    Setelah tahap preprocessing, data disimpan kembali dalam bentuk CSV dengan nama data_bersih.csv.
+## 📂 Dataset
+Dataset yang digunakan memiliki tiga kolom utama:
+- **Sentiment**: Label sentimen (*Positive* atau *Negative*).
+- **Customer Review**: Ulasan asli dari pelanggan.
+- **Corpus**: Hasil *preprocessing* teks.
 
-4. Vektorisasi Teks
-Untuk mengubah teks menjadi format numerik, digunakan TF-IDF Vectorizer. Teknik ini membantu dalam merepresentasikan kata-kata yang lebih penting dalam suatu teks berdasarkan kemunculannya di seluruh dokumen.
+Dataset telah diperiksa dan tidak mengandung nilai kosong.
 
-5. Pembagian Data
-   Data kemudian dibagi menjadi:
-    •	70% untuk data latih (train set)
-    •	30% untuk data uji (test set)
+---
 
-6. Model Klasifikasi dengan Support Vector Machine (SVM)
-    •	Model SVM (Support Vector Classification) digunakan untuk mengklasifikasikan sentimen pelanggan.
-    •	Setelah pelatihan model, diperoleh hasil evaluasi sebagai berikut:
-Hasil Evaluasi Model
-    •	Akurasi: 89%
-    •	Precision (Negative/Positive): 86% / 94%
-    •	Recall (Negative/Positive): 95% / 83%
-    •	F1-score (Negative/Positive): 90% / 88%
-Berdasarkan confusion matrix, terdapat 179 prediksi benar untuk sentimen negatif dan 142 prediksi benar untuk sentimen positif, dengan beberapa kesalahan klasifikasi.
-Kesimpulan
-    •	Model SVM menunjukkan performa yang baik dalam mengklasifikasikan sentimen pelanggan dengan akurasi 89%.
-    •	Preprocessing teks membantu meningkatkan akurasi dengan membersihkan teks sebelum digunakan dalam pemodelan.
-    •	Model ini dapat digunakan untuk analisis lebih lanjut, seperti mengidentifikasi aspek tertentu dari ulasan pelanggan atau mengembangkan sistem rekomendasi berbasis sentimen.
+## 🔄 Preprocessing Teks
+Sebelum digunakan dalam pemodelan, teks melalui beberapa tahap *preprocessing*:
+1. **Konversi Slang Words**: Menggunakan kamus slang (*kamusalay.csv*) untuk mengganti kata tidak baku dengan versi formal.
+2. **Penghapusan Tanda Baca**: Menghapus simbol atau tanda baca yang tidak diperlukan.
+3. **Penghapusan Karakter Berulang**: Menghapus huruf yang berulang lebih dari dua kali, misalnya "baguuusss" menjadi "bagus".
+4. **Stemming**: Mengubah kata menjadi bentuk dasarnya menggunakan **Sastrawi**, misalnya "pengiriman" menjadi "kirim".
+5. **Stopwords Removal**: Menghapus kata-kata yang tidak memiliki makna signifikan dalam analisis sentimen.
+
+Setelah tahap *preprocessing*, data disimpan kembali dalam format CSV dengan nama **data_bersih.csv**.
+
+---
+
+## 🔢 Vektorisasi Teks
+- Digunakan **TF-IDF Vectorizer** untuk mengubah teks menjadi format numerik.
+- Teknik ini membantu merepresentasikan kata-kata yang lebih penting berdasarkan kemunculannya di seluruh dokumen.
+
+---
+
+## 🔀 Pembagian Data
+Dataset dibagi menjadi:
+- **70% untuk data latih (train set)**
+- **30% untuk data uji (test set)**
+
+---
+
+## 🧠 Model Klasifikasi: Support Vector Machine (SVM)
+- Model **Support Vector Classification (SVC)** digunakan untuk mengklasifikasikan sentimen pelanggan.
+- Dilakukan pelatihan model menggunakan data yang telah melalui tahap *preprocessing* dan vektorisasi.
+
+### 📊 Hasil Evaluasi Model
+| Metrik  | Negative | Positive |
+|---------|---------|---------|
+| **Akurasi** | **89%** | - |
+| **Precision** | 86% | 94% |
+| **Recall** | 95% | 83% |
+| **F1-score** | 90% | 88% |
+
+📌 **Confusion Matrix** menunjukkan:
+- 179 prediksi benar untuk sentimen **Negative**.
+- 142 prediksi benar untuk sentimen **Positive**.
+- Beberapa kesalahan klasifikasi yang masih dapat diperbaiki dengan optimasi lebih lanjut.
+
+---
+
+## ✅ Kesimpulan
+- Model **SVM** menunjukkan performa yang cukup baik dengan akurasi **89%**.
+- Proses *preprocessing* teks berperan penting dalam meningkatkan akurasi model.
+- Model ini dapat dikembangkan lebih lanjut untuk analisis aspek spesifik dalam ulasan pelanggan atau integrasi dengan sistem rekomendasi berbasis sentimen.
+
+
+
+---
+
+## 📌 Teknologi yang Digunakan
+- Python 🐍
+- Pandas 📝
+- Scikit-Learn 🤖
+- Sastrawi 🔍
+
+📌 **Silakan beri ⭐ jika proyek ini bermanfaat!** 😊
 
